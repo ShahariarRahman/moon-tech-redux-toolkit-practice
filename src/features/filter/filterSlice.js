@@ -18,4 +18,5 @@ const filterSlice = createSlice({
     },
 });
 
+export const { toggle, toggleBrand } = filterSlice.actions;
 export default filterSlice.reducer;
