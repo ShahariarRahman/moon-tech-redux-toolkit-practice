@@ -18,7 +18,13 @@ const cartSlice = createSlice({
             };
         },
         removeFromCart: (state, action) => {
-
+            const selectedCart = state.carts.find(product => product._id === action.payload._id);
+            if (selectedCart.quantity > 1) {
+                selectedCart.quantity -= 1;
+            }
+            else {
+                state.carts.filter(product => product._id !== selectedCart._id);
+            };
         },
     },
 });
