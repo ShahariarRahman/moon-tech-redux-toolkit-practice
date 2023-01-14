@@ -9,3 +9,4 @@
 - - cartSlice
 - - - createSlice
 - - - export cartSlice.reducer
+- - - export cartSlice.actions
