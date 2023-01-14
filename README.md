@@ -1,4 +1,7 @@
 ## Moon Tech Redux Toolkit Practice
 
-- Installation :
-- - npm install @reduxjs/toolkit react-redux . [details](https://redux-toolkit.js.org/tutorials/quick-start#usage-summary)
+### Redux Toolkit Setup : [help](https://redux-toolkit.js.org/tutorials/quick-start#usage-summary)
+
+- npm install @reduxjs/toolkit react-redux
+- store set up
+- - configureStore
