@@ -5,3 +5,7 @@
 - npm install @reduxjs/toolkit react-redux
 - store set up
 - - configureStore
+- slices set up
+- - cartSlice
+- - - createSlice
+- - - export cartSlice.reducer
