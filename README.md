@@ -37,7 +37,17 @@
 - productsAPI.js
 - - axios.get("/product")
 - createAsyncThunk [help](https://redux-toolkit.js.org/api/createAsyncThunk)
-- - ( actions name , async callback function (state,action))
+- - export createAsyncThunk function to dispatch
+- - parameters
+- - - actions name
+- - - async callback function ( passes value when dispatch , thunkAPI)
+- - - - return data after fetching
+- extraReducers (builder)
+- - builder.addCase()
+- - - createAsyncFunction.pending , createAsyncFunction.fulfilled, createAsyncFunction.rejected
+- - - callbackFunction(state,action)
+- - - - actions: get data which return from createAsyncFunction
+- - - - state: to manipulate state for each pending , fulfilled , rejected case
 
 #### env.local
 
