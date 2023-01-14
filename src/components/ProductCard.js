@@ -22,9 +22,9 @@ const ProductCard = ({ product }) => {
       <p className="text-center font-semibold mb-3">Rating: {product.rating}</p>
       <div className=" flex-1">
         <ul className="space-y-2">
-          {product.keyFeature.map((feature) => {
+          {product.keyFeature.map((feature, i) => {
             return (
-              <li key={feature} className="text-sm ">
+              <li key={i} className="text-sm ">
                 {feature}
               </li>
             );
