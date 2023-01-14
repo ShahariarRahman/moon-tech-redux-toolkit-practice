@@ -13,7 +13,13 @@ const filterSlice = createSlice({
     toggle: (state) => {
       state.stock = !state.stock;
     },
-    toggleBrand: (state, action) => {},
+    toggleBrand: (state, action) => {
+      if (state.brands.includes(action.payload)) {
+        state.brands = state.brands.filter((brand) => brand !== action.payload);
+      } else {
+        state.brands.push(action.payload);
+      }
+    },
   },
 });
 
