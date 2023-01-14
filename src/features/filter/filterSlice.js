@@ -11,3 +11,5 @@ const filterSlice = createSlice({
     initialState,
     reducers: {},
 });
+
+export default filterSlice.reducer;
