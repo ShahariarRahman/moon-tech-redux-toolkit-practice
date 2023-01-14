@@ -37,7 +37,7 @@
 - productsAPI.js
 - - axios.get("/product")
 - createAsyncThunk [help](https://redux-toolkit.js.org/api/createAsyncThunk)
--
+- - ( actions name , async callback function (state,action))
 
 #### env.local
 
