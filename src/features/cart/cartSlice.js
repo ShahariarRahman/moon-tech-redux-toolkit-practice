@@ -23,7 +23,7 @@ const cartSlice = createSlice({
                 selectedCart.quantity -= 1;
             }
             else {
-                state.carts.filter(product => product._id !== selectedCart._id);
+                state.carts = state.carts.filter(product => product._id !== selectedCart._id);
             };
         },
     },
