@@ -26,8 +26,9 @@ export const addProducts = createAsyncThunk(
 );
 export const removeProducts = createAsyncThunk(
   "products/removeProduct",
-  async (id) => {
-    const products = deleteProduct(id);
+  async (id, thunkAPI) => {
+    const products = await deleteProduct(id);
+    thunkAPI.dispatch(removeFromList(id));
     return products;
   }
 );
@@ -35,7 +36,13 @@ export const removeProducts = createAsyncThunk(
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    removeFromList: (state, action) => {
+      state.products = state.products.filter(
+        (product) => product._id !== action.payload
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getProducts.pending, (state) => {
@@ -99,4 +106,5 @@ const productsSlice = createSlice({
   },
 });
 
+export const { removeFromList } = productsSlice.actions;
 export default productsSlice.reducer;

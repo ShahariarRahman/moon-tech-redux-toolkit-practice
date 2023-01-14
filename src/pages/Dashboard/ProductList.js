@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProducts,
@@ -6,13 +7,25 @@ import {
 } from "../../features/products/productsSlice";
 
 const ProductList = () => {
-  const { products } = useSelector((state) => state.products);
+  const { products, isLoading, deleteSuccess, isError, error } = useSelector(
+    (state) => state.products
+  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!isLoading && deleteSuccess) {
+      toast.success("Delete Successful", { id: "deleteProduct" });
+    }
+  }, [deleteSuccess, isLoading]);
+
+  if (isLoading) {
+    return <h1>Loading</h1>;
+  }
 
   return (
     <div className="flex flex-col justify-center items-center h-full w-full ">
