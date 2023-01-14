@@ -13,4 +13,4 @@
 - - filterSlice set up
 - - - createSlice
 - - - export filterSlice.reducer
-- - - export filterSlice.actions : addToCart , removeFromCart
+- - - export filterSlice.actions : toggle , toggleBrand
