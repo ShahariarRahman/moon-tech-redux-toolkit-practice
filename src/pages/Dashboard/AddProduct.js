@@ -10,7 +10,7 @@ const AddProduct = () => {
     (state) => state.products
   );
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const dispatch = useDispatch();
 
@@ -20,11 +20,12 @@ const AddProduct = () => {
     }
     if (!isLoading && postSuccess) {
       toast.success("Product Added !", { id: "addProduct" });
+      reset();
     }
     if (!isLoading && isError) {
       toast.error("Failed to add Product !", { id: "addProduct" });
     }
-  }, [isLoading, postSuccess, isError]);
+  }, [isLoading, postSuccess, isError, reset]);
 
   const submit = (data) => {
     const product = {

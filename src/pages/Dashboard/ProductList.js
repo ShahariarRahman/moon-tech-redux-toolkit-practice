@@ -1,10 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../features/products/productsSlice";
+import {
+  getProducts,
+  removeProducts,
+} from "../../features/products/productsSlice";
 
 const ProductList = () => {
   const { products } = useSelector((state) => state.products);
+
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
@@ -67,7 +72,7 @@ const ProductList = () => {
                   </td>
                   <td className="p-2">
                     <div className="flex justify-center">
-                      <button>
+                      <button onClick={() => dispatch(removeProducts(_id))}>
                         <svg
                           className="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1"
                           fill="none"

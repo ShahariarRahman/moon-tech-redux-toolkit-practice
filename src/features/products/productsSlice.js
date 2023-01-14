@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchProducts, postProducts } from "./productsAPI";
+import { deleteProduct, fetchProducts, postProduct } from "./productsAPI";
 
 const initialState = {
   products: [],
@@ -18,9 +18,16 @@ export const getProducts = createAsyncThunk(
   }
 );
 export const addProducts = createAsyncThunk(
-  "products/addProducts",
+  "products/addProduct",
   async (data) => {
-    const products = postProducts(data);
+    const products = postProduct(data);
+    return products;
+  }
+);
+export const removeProducts = createAsyncThunk(
+  "products/removeProduct",
+  async (id) => {
+    const products = deleteProduct(id);
     return products;
   }
 );
@@ -30,45 +37,65 @@ const productsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getProducts.pending, (state) => {
-      state.isLoading = true;
-      state.postSuccess = false;
-      state.deleteSuccess = false;
-      state.isError = false;
-    });
-    builder.addCase(getProducts.fulfilled, (state, action) => {
-      state.products = action.payload;
-      state.isLoading = false;
-      state.postSuccess = false;
-      state.deleteSuccess = false;
-      state.isError = false;
-    });
-    builder.addCase(getProducts.rejected, (state, action) => {
-      state.isLoading = false;
-      state.postSuccess = false;
-      state.deleteSuccess = false;
-      state.isError = true;
-      state.error = action.error.message;
-    });
-    builder.addCase(addProducts.pending, (state) => {
-      state.isLoading = true;
-      state.postSuccess = false;
-      state.deleteSuccess = false;
-      state.isError = false;
-    });
-    builder.addCase(addProducts.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.postSuccess = true;
-      state.deleteSuccess = false;
-      state.isError = false;
-    });
-    builder.addCase(addProducts.rejected, (state, action) => {
-      state.isLoading = false;
-      state.postSuccess = false;
-      state.deleteSuccess = false;
-      state.isError = true;
-      state.error = action.error.message;
-    });
+    builder
+      .addCase(getProducts.pending, (state) => {
+        state.isLoading = true;
+        state.postSuccess = false;
+        state.deleteSuccess = false;
+        state.isError = false;
+      })
+      .addCase(getProducts.fulfilled, (state, action) => {
+        state.products = action.payload;
+        state.isLoading = false;
+        state.postSuccess = false;
+        state.deleteSuccess = false;
+        state.isError = false;
+      })
+      .addCase(getProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.postSuccess = false;
+        state.deleteSuccess = false;
+        state.isError = true;
+        state.error = action.error.message;
+      })
+      .addCase(addProducts.pending, (state) => {
+        state.isLoading = true;
+        state.postSuccess = false;
+        state.deleteSuccess = false;
+        state.isError = false;
+      })
+      .addCase(addProducts.fulfilled, (state) => {
+        state.isLoading = false;
+        state.postSuccess = true;
+        state.deleteSuccess = false;
+        state.isError = false;
+      })
+      .addCase(addProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.postSuccess = false;
+        state.deleteSuccess = false;
+        state.isError = true;
+        state.error = action.error.message;
+      })
+      .addCase(removeProducts.pending, (state) => {
+        state.isLoading = true;
+        state.postSuccess = false;
+        state.deleteSuccess = false;
+        state.isError = false;
+      })
+      .addCase(removeProducts.fulfilled, (state) => {
+        state.isLoading = false;
+        state.postSuccess = false;
+        state.deleteSuccess = true;
+        state.isError = false;
+      })
+      .addCase(removeProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.postSuccess = false;
+        state.deleteSuccess = false;
+        state.isError = true;
+        state.error = action.error.message;
+      });
   },
 });
 
