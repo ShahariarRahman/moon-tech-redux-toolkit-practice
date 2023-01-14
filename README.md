@@ -14,3 +14,7 @@
 - - - createSlice
 - - - export filterSlice.reducer
 - - - export filterSlice.actions : toggle , toggleBrand
+- async slices set up
+- - productsSlice
+- - - createSlice
+- - - export productsSlice.reducer
