@@ -9,4 +9,8 @@
 - - cartSlice
 - - - createSlice
 - - - export cartSlice.reducer
-- - - export cartSlice.actions
+- - - export cartSlice.actions : addToCart , removeFromCart
+- - filterSlice set up
+- - - createSlice
+- - - export filterSlice.reducer
+- - - export filterSlice.actions : addToCart , removeFromCart
